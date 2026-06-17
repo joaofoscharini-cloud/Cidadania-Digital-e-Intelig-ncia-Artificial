@@ -10,18 +10,19 @@
 
     <header>
         <h1>Cidadania Digital e IA</h1>
-        <p>Navegando com ética e responsabilidade.</p>
     </header>
 
     <main>
-        <section class="card">
+        <article class="card">
             <h2>O que é Cidadania Digital?</h2>
-            <p>É o uso responsável da tecnologia para interagir com o mundo, especialmente na era da Inteligência Artificial.</p>
-        </section>
+            <p>É o exercício de direitos e deveres no ambiente virtual, utilizando a Inteligência Artificial com ética e consciência.</p>
+        </article>
 
-        <section class="card interactive-section">
-            <button id="btn-dica">💡 Gerar Dica Ética</button>
-            <p id="dica-display"></p>
+        <section class="card">
+            <button id="btn-dica" aria-label="Gerar nova dica sobre IA">💡 Gerar Dica Ética</button>
+            <div id="dica-container" aria-live="polite">
+                <p id="dica-display">Clique no botão para uma reflexão.</p>
+            </div>
         </section>
     </main>
 
