@@ -1,38 +1,63 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aprenda sobre Cidadania Digital e o uso ético da Inteligência Artificial.">
-    <title>Cidadania Digital e IA</title>
+    <meta name="description" content="Plataforma interativa sobre Cidadania Digital e Ética em Inteligência Artificial.">
+    <title>Cidadania Digital & IA Avançado</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="app">
 
-    <header>
-        <h1>Cidadania Digital e IA</h1>
-        <p>Navegando no futuro com ética e responsabilidade</p>
+    <header class="app-header">
+        <div class="app-header__container">
+            <h1 class="app-header__title">Cidadania Digital & IA</h1>
+            <button id="theme-toggle" class="btn btn--secondary" aria-label="Alternar tema visual">
+                <span class="theme-toggle__icon">🌙</span>
+            </button>
+        </div>
     </header>
 
-    <main>
-        <article class="card">
-            <h2>O que é Cidadania Digital?</h2>
-            <p>É o exercício de direitos e deveres no ambiente virtual, utilizando a tecnologia e a Inteligência Artificial com ética, segurança e consciência.</p>
+    <main class="app-main">
+        <article class="card card--informative">
+            <h2 class="card__title">O Exercício da Ética Digital</h2>
+            <p class="card__text">
+                A cidadania digital exige discernimento crítico. À medida que os sistemas de IA se integram ao cotidiano, mitigar vieses, proteger a privacidade e validar dados tornam-se responsabilidades coletivas.
+            </p>
         </article>
 
-        <section class="card">
-            <h2>Reflexão do Dia</h2>
-            <button id="btn-dica" aria-label="Gerar nova dica sobre IA">💡 Gerar Dica Ética</button>
-            <div id="dica-container" aria-live="polite">
-                <p id="dica-display">Clique no botão acima para receber uma reflexão.</p>
+        <section class="card card--interactive" id="tips-component">
+            <h2 class="card__title">Diretrizes Éticas</h2>
+            
+            <div class="card__actions">
+                <button id="btn-next-tip" class="btn btn--primary" aria-haspopup="true">
+                    <span>💡 Gerar Reflexão</span>
+                </button>
+            </div>
+
+            <div class="card__display-container">
+                <div id="tip-skeleton" class="skeleton skeleton--hidden" aria-hidden="true">
+                    <div class="skeleton__line"></div>
+                    <div class="skeleton__line skeleton__line--short"></div>
+                </div>
+                
+                <p id="tip-text" class="card__display-text" aria-live="polite">
+                    Clique no botão acima para carregar dados da base de conhecimento.
+                </p>
+            </div>
+
+            <div class="card__footer-actions">
+                <button id="btn-copy-tip" class="btn btn--text btn--disabled" disabled aria-label="Copiar reflexão atual">
+                    <span class="btn__icon">📋</span> Copiar Diretriz
+                </button>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Cidadania Digital. Promovendo o uso consciente da IA.</p>
+    <footer class="app-footer">
+        <p class="app-footer__text">&copy; 2026 Core Architecture. Uso ético e consciente da tecnologia.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
 </body>
 </html>
