@@ -1,119 +1,219 @@
 /* ==========================================================================
-   1. RESET & CONFIGURAÇÕES GLOBAIS
+   DESIGN TOKENS & ARQUITETURA DE TEMAS
    ========================================================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Garante que padding/borders não quebrem o tamanho dos elementos */
+:root {
+    /* Theme: Light (Default) */
+    --bg-app: #f8fafc;
+    --bg-card: #ffffff;
+    --border-color: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    
+    /* Brand Colors */
+    --brand-primary: #4f46e5;
+    --brand-secondary: #7c3aed;
+    --brand-success: #10b981;
+    
+    /* Easing and Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.05);
 }
 
-:root {
-    --primaria: #4A90E2;
-    --secundaria: #9013FE;
-    --background: #f0f2f5;
-    --texto-escuro: #2c3e50;
-    --texto-corpo: #444444;
-    --sombra: rgba(0, 0, 0, 0.1);
-    --transicao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+[data-theme="dark"] {
+    /* Theme: Dark Overrides */
+    --bg-app: #0f172a;
+    --bg-card: #1e293b;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    
+    --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.3);
 }
 
 /* ==========================================================================
-   2. ESTRUTURA DO LAYOUT (BODY)
+   RESET & LAYOUT ESTRUTURAL (BEM: app)
    ========================================================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: var(--background);
-    color: var(--texto-corpo);
-    
-    /* Centralização robusta na tela inteira */
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: var(--transition-smooth);
+    overflow-y: scroll;
+}
+
+.app-header {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.25rem 0;
+    transition: var(--transition-smooth);
+}
+
+.app-header__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh; 
-    padding: 20px;
-    line-height: 1.5;
 }
 
-/* ==========================================================================
-   3. COMPONENTES
-   ========================================================================== */
-
-header h1 {
-    color: var(--primaria);
-    margin-bottom: 24px;
-    font-size: 2.2rem;
-    text-align: center;
+.app-header__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, var(--brand-primary), var(--brand-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.card {
-    background: #ffffff;
-    padding: 2.5rem 2rem;
+.app-main {
+    flex: 1;
+    max-width: 650px;
     width: 100%;
-    max-width: 500px;
-    border-radius: 16px; /* Bordas levemente mais suaves */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px var(--sombra);
-    text-align: center;
-    transition: var(--transicao);
-}
-
-/* Efeito sutil ao passar o mouse no card */
-.card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.08);
+    margin: 3rem auto;
+    padding: 0 1.5rem;
 }
 
 /* ==========================================================================
-   4. ELEMENTOS DE INTERAÇÃO (BOTÃO)
+   COMPONENTE: CARD (BEM: card)
    ========================================================================== */
-button {
-    background: linear-gradient(135deg, var(--primaria), var(--secundaria));
-    color: #ffffff;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+    transition: var(--transition-smooth);
+}
+
+.card--interactive {
+    position: relative;
+    border-left: 4px solid var(--brand-primary);
+}
+
+.card__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.card__text, .card__display-text {
     font-size: 1rem;
-    letter-spacing: 0.5px;
-    
-    /* Transição suave para múltiplos estados (shadow, filter, transform) */
-    transition: var(--transicao);
-    box-shadow: 0 4px 6px rgba(74, 144, 226, 0.2);
+    line-height: 1.7;
+    color: var(--text-secondary);
 }
 
-/* Estado de Hover (Mouse passando por cima) */
-button:hover {
-    filter: brightness(1.1); /* Ilumina o gradiente de forma natural */
-    box-shadow: 0 7px 14px rgba(74, 144, 226, 0.3);
-    transform: translateY(-1px);
-}
-
-/* Estado Ativo (Clique) */
-button:active {
-    transform: scale(0.97);
-    box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
-}
-
-/* ACESSIBILIDADE: Destaque para navegação via teclado (Tab) */
-button:focus-visible {
-    outline: 3px solid var(--primaria);
-    outline-offset: 3px;
-}
-
-/* ==========================================================================
-   5. DINÂMICA (DISPLAY DE TEXTO)
-   ========================================================================== */
-#dica-display {
-    margin-top: 20px;
-    font-size: 1.15rem;
-    color: var(--texto-escuro);
-    min-height: 60px;
+.card__display-container {
+    margin: 2rem 0;
+    min-height: 80px;
     display: flex;
     align-items: center;
+}
+
+.card__display-text {
+    width: 100%;
+    transition: opacity 0.2s ease;
+}
+
+.card__display-text--faded { opacity: 0; }
+
+/* ==========================================================================
+   COMPONENTE: BOTÕES (BEM: btn)
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    font-style: italic;
-    
-    /* Essencial para sincronizar com o efeito de Fade Out/In do JavaScript */
-    transition: opacity 0.25s ease-in-out; 
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    user-select: none;
+}
+
+.btn--primary {
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+.btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
+    filter: brightness(1.1);
+}
+
+.btn--primary:active { transform: translateY(0); }
+
+.btn--secondary {
+    background-color: var(--bg-app);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.btn--text {
+    background: transparent;
+    color: var(--brand-primary);
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.btn--text:not(:disabled):hover { color: var(--brand-secondary); }
+
+.btn--disabled, .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==========================================================================
+   ESTADOS DE INTERFACE (Skeletons & Animations)
+   ========================================================================== */
+.skeleton {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skeleton--hidden { display: none; }
+
+.skeleton__line {
+    height: 1rem;
+    background: linear-gradient(90deg, var(--border-color) 25%, var(--bg-app) 50%, var(--border-color) 75%);
+    background-size: 200% 100%;
+    animation: loading-shimmer 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+.skeleton__line--short { width: 60%; }
+
+@keyframes loading-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.app-footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
 }
