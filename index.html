@@ -1,63 +1,62 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Plataforma interativa sobre Cidadania Digital e Ética em Inteligência Artificial.">
-    <title>Cidadania Digital & IA Avançado</title>
+    <title>Cidadania Digital & Inteligência Artificial</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="app">
+<body>
 
-    <header class="app-header">
-        <div class="app-header__container">
-            <h1 class="app-header__title">Cidadania Digital & IA</h1>
-            <button id="theme-toggle" class="btn btn--secondary" aria-label="Alternar tema visual">
-                <span class="theme-toggle__icon">🌙</span>
-            </button>
+    <header class="hero">
+        <div class="container">
+            <h1>Cidadania Digital & <span class="highlight">IA</span></h1>
+            <p>Navegando no futuro da tecnologia com responsabilidade, ética e segurança.</p>
+            <a href="#quiz-section" class="btn-primary">Testar Meus Conhecimentos</a>
         </div>
     </header>
 
-    <main class="app-main">
-        <article class="card card--informative">
-            <h2 class="card__title">O Exercício da Ética Digital</h2>
-            <p class="card__text">
-                A cidadania digital exige discernimento crítico. À medida que os sistemas de IA se integram ao cotidiano, mitigar vieses, proteger a privacidade e validar dados tornam-se responsabilidades coletivas.
-            </p>
-        </article>
-
-        <section class="card card--interactive" id="tips-component">
-            <h2 class="card__title">Diretrizes Éticas</h2>
-            
-            <div class="card__actions">
-                <button id="btn-next-tip" class="btn btn--primary" aria-haspopup="true">
-                    <span>💡 Gerar Reflexão</span>
-                </button>
-            </div>
-
-            <div class="card__display-container">
-                <div id="tip-skeleton" class="skeleton skeleton--hidden" aria-hidden="true">
-                    <div class="skeleton__line"></div>
-                    <div class="skeleton__line skeleton__line--short"></div>
+    <main class="container">
+        <section class="pillars">
+            <h2>Os 3 Pilares da IA Responsável</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>1. Ética e Transparência</h3>
+                    <p>Saber quando uma IA foi usada para criar um conteúdo e combater a disseminação de Deepfakes e desinformação.</p>
                 </div>
-                
-                <p id="tip-text" class="card__display-text" aria-live="polite">
-                    Clique no botão acima para carregar dados da base de conhecimento.
-                </p>
+                <div class="card">
+                    <h3>2. Privacidade de Dados</h3>
+                    <p>Atenção aos dados pessoais que você compartilha com ferramentas de IA. Seus dados treinam os modelos do futuro.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Pensamento Crítico</h3>
+                    <p>IAs cometem erros (alucinações). Sempre verifique as fontes e use a tecnologia como assistente, não como substituta do seu cérebro.</p>
+                </div>
             </div>
+        </section>
 
-            <div class="card__footer-actions">
-                <button id="btn-copy-tip" class="btn btn--text btn--disabled" disabled aria-label="Copiar reflexão atual">
-                    <span class="btn__icon">📋</span> Copiar Diretriz
-                </button>
+        <section id="quiz-section" class="quiz-container">
+            <h2>Desafio do Cidadão Digital</h2>
+            <p class="quiz-intro">Será que você sabe usar a Inteligência Artificial de forma consciente? Responda à pergunta abaixo:</p>
+            
+            <div class="quiz-box">
+                <p class="question"><strong>Pergunta:</strong> Você precisa fazer um trabalho escolar e decide usar uma IA generativa (como o ChatGPT). Qual é a atitude correta de um bom cidadão digital?</p>
+                
+                <div class="options">
+                    <button class="option-btn" data-correct="false">A) Copiar e colar o texto gerado pela IA integralmente, sem revisar ou citar que usou a ferramenta.</button>
+                    <button class="option-btn" data-correct="true">B) Usar a IA para estruturar ideias, conferir se as informações são reais em fontes confiáveis e citar o uso da IA no trabalho.</button>
+                    <button class="option-btn" data-correct="false">C) Inserir dados pessoais de colegas e professores na IA para que ela personalize o texto para a sua realidade.</button>
+                </div>
+
+                <div id="quiz-feedback" class="feedback hidden"></div>
             </div>
         </section>
     </main>
 
-    <footer class="app-footer">
-        <p class="app-footer__text">&copy; 2026 Core Architecture. Uso ético e consciente da tecnologia.</p>
+    <footer>
+        <p>&copy; 2026 - Guia de Cidadania Digital. Desenvolvido para um futuro consciente.</p>
     </footer>
 
-    <script src="script.js" type="module"></script>
+    <script src="script.js"></script>
 </body>
 </html>
