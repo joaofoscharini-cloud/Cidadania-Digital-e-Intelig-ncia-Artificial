@@ -1,46 +1,119 @@
+/* ==========================================================================
+   1. RESET & CONFIGURAÇÕES GLOBAIS
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding/borders não quebrem o tamanho dos elementos */
+}
+
 :root {
     --primaria: #4A90E2;
     --secundaria: #9013FE;
+    --background: #f0f2f5;
+    --texto-escuro: #2c3e50;
+    --texto-corpo: #444444;
+    --sombra: rgba(0, 0, 0, 0.1);
+    --transicao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* ==========================================================================
+   2. ESTRUTURA DO LAYOUT (BODY)
+   ========================================================================== */
 body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    background-color: #f0f2f5;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--background);
+    color: var(--texto-corpo);
+    
+    /* Centralização robusta na tela inteira */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh; 
     padding: 20px;
+    line-height: 1.5;
 }
 
-header { color: var(--primaria); margin-bottom: 20px; }
+/* ==========================================================================
+   3. COMPONENTES
+   ========================================================================== */
 
-.card {
-    background: white;
-    padding: 2rem;
-    width: 100%;
-    max-width: 500px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+header h1 {
+    color: var(--primaria);
+    margin-bottom: 24px;
+    font-size: 2.2rem;
     text-align: center;
 }
 
+.card {
+    background: #ffffff;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 16px; /* Bordas levemente mais suaves */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px var(--sombra);
+    text-align: center;
+    transition: var(--transicao);
+}
+
+/* Efeito sutil ao passar o mouse no card */
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.08);
+}
+
+/* ==========================================================================
+   4. ELEMENTOS DE INTERAÇÃO (BOTÃO)
+   ========================================================================== */
 button {
-    background: linear-gradient(to right, var(--primaria), var(--secundaria));
-    color: white;
-    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--primaria), var(--secundaria));
+    color: #ffffff;
+    padding: 14px 28px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
-    transition: transform 0.2s;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    
+    /* Transição suave para múltiplos estados (shadow, filter, transform) */
+    transition: var(--transicao);
+    box-shadow: 0 4px 6px rgba(74, 144, 226, 0.2);
 }
 
-button:active { transform: scale(0.95); }
+/* Estado de Hover (Mouse passando por cima) */
+button:hover {
+    filter: brightness(1.1); /* Ilumina o gradiente de forma natural */
+    box-shadow: 0 7px 14px rgba(74, 144, 226, 0.3);
+    transform: translateY(-1px);
+}
 
+/* Estado Ativo (Clique) */
+button:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+}
+
+/* ACESSIBILIDADE: Destaque para navegação via teclado (Tab) */
+button:focus-visible {
+    outline: 3px solid var(--primaria);
+    outline-offset: 3px;
+}
+
+/* ==========================================================================
+   5. DINÂMICA (DISPLAY DE TEXTO)
+   ========================================================================== */
 #dica-display {
-    margin-top: 15px;
-    font-size: 1.1rem;
-    color: #444;
-    min-height: 50px;
+    margin-top: 20px;
+    font-size: 1.15rem;
+    color: var(--texto-escuro);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    
+    /* Essencial para sincronizar com o efeito de Fade Out/In do JavaScript */
+    transition: opacity 0.25s ease-in-out; 
 }
